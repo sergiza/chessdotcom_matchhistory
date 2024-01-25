@@ -23,7 +23,7 @@ def get_chess_games(year, month):
     try:
         games = response.json().get('games', [])
     except ValueError:
-        print("Error: la respuesta no es un JSON válido.")
+        print("Error: invalid JSON")
         return []
 
     return games
