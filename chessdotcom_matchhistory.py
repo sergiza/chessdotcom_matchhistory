@@ -71,8 +71,7 @@ def update_markdown_file(year, month, games):
             result = f"<!-- {white_result}: -->" if color_emoji == '♔' else f"<!-- {black_result}: -->"
 
             # FORMATTING
-            if 'win:' in result or 'agreed:' in result or 'resigned:' in result or 'timeout:' in result:
-                result = result.replace('win:', 'win:\t\t').replace('agreed:', 'agreed:\t').replace('resigned:', 'resigned:\t').replace('timeout:', 'timeout:\t')
+            result = result.replace('win:', 'win:\t\t').replace('agreed:', 'agreed:\t').replace('resigned:', 'resigned:\t').replace('timeout:', 'timeout:\t').replace('abandoned:', 'abandoned:\t').replace('stalemate:', 'stalemate:\t')
 
             opponent = f"vs {game['black']['username']}" if color_emoji == '♔' else f"vs {game['white']['username']}"
             game_line = f"{game_number}\t{game_day}\t{color_emoji}\t{result}\t{opponent}\n"
