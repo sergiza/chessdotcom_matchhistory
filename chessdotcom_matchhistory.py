@@ -73,8 +73,9 @@ def update_markdown_file(year, month, games):
             # FORMATTING
             result = result.replace('win:', 'win:\t\t').replace('agreed:', 'agreed:\t').replace('resigned:', 'resigned:\t').replace('timeout:', 'timeout:\t').replace('abandoned:', 'abandoned:\t').replace('stalemate:', 'stalemate:\t')
 
+            my_rating = game['white']['rating'] if game['white']['username'].lower() == user.lower() else game['black']['rating']
             opponent = f"vs {game['black']['username']}" if color_emoji == '♔' else f"vs {game['white']['username']}"
-            game_line = f"{game_number}\t{game_day}\t{color_emoji}\t{result}\t{opponent}\n"
+            game_line = f"{game_number}\t{game_day}\t{color_emoji}\t{result}\t{my_rating} 🥇\t{opponent}\n"
             if game_line not in existing_games:
                 file.write(game_line)
 
