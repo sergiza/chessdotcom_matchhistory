@@ -3,12 +3,29 @@ import os
 import sys
 import datetime
 
+# ----------------------------------------------------------
+
+# USAGE: python chessdotcom_matchhistory.py [year] [month]
+#   no args ->  current year & month
+
 user = 'magnuscarlsen'   # <- CHESS.COM USERNAME
-if len(sys.argv) < 3:
-    print("python chessdotcom_matchhistory.py [year] [month]")
+
+# ----------------------------------------------------------
+
+# month & year
+current = datetime.datetime.now()
+year_current = str(current.year)
+month_current = str(current.month).zfill(2)
+if len(sys.argv) == 1:      # No args       ->  use current month & year
+    year = year_current
+    month = month_current
+elif len(sys.argv) == 3:    # With args     ->  use args
+    year = sys.argv[1]
+    month = sys.argv[2].zfill(2)
+else:                       # Weird format  ->  show help
+    print("USAGE: python chessdotcom_matchhistory.py [year] [month]")
     sys.exit(1)
-year = sys.argv[1]
-month = sys.argv[2].zfill(2)
+
 
 def get_chess_games(year, month):
     url = f"https://api.chess.com/pub/player/{user}/games/{year}/{month}"
