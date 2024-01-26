@@ -6,7 +6,7 @@ import datetime
 
 # ----------------------------------------------------------
 
-# USAGE: python chessdotcom_matchhistory.py [year] [month]
+# USAGE: python matchhistory.py [year] [month]
 #   no args ->  current year & month
 
 user = 'magnuscarlsen'   # <- CHESS.COM USERNAME
@@ -24,14 +24,14 @@ elif len(sys.argv) == 3:    # With args     ->  use args
     year = sys.argv[1]
     month = sys.argv[2].zfill(2)
 else:                       # Weird format  ->  show help
-    print("USAGE: python chessdotcom_matchhistory.py [year] [month]")
+    print("USAGE: python matchhistory.py [year] [month]")
     sys.exit(1)
 
 
 def get_chess_games(year, month):
     url = f"https://api.chess.com/pub/player/{user}/games/{year}/{month}"
 
-    headers = {'User-Agent': 'chessdotcom_matchhistory/1.0'}
+    headers = {'User-Agent': 'matchhistory/1.0'}
     response = requests.get(url, headers=headers)
 
     if response.status_code != 200:
